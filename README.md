@@ -25,7 +25,7 @@ wstool update
 
 # Install required libraries.
 cd ../
-rosdep install --from-paths src --ignore-src --rosdistro kinetic -y
+rosdep install --from-paths src --ignore-src --rosdistro noetic -y
 # Install external libraries for flightgoggles_ros_bridge
 sudo apt install -y libzmqpp-dev libeigen3-dev
 # Install dependencies for flightgoggles renderer
