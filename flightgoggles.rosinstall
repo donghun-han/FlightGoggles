@@ -13,4 +13,5 @@
 # FlightGoggles nodes
 - git: {local-name: flightgoggles, uri: 'https://github.com/mit-fast/FlightGoggles.git'}
 
-
+# mav_comm
+- git: {local-name: mav_comm, uri: 'https://github.com/ethz-asl/mav_comm.git'}

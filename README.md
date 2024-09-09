@@ -1,5 +1,49 @@
 # FlightGoggles
 
+## Environment
+- Ubuntu 20.04 Desktop
+- Nvidia GeForce RTX 3090
+
+## Install 
+### FlightGoggles Renderer
+- Download the latest binary from [Releases](https://github.com/mit-fast/FlightGoggles/releases) and extract the files.
+
+
+### FlightGoggles Client
+```bash
+# Setup catkin workspace
+mkdir -p ~/flightgoggles_ws/src
+cd ~/flightgoggles_ws/
+catkin init
+echo 'source ~/flightgoggles_ws/devel/setup.bash' >> ~/.bashrc
+
+# Install FlightGoggles nodes and deps from rosinstall file
+cd src
+wstool init
+wstool merge https://raw.githubusercontent.com/donghun-han/FlightGoggles/master/flightgoggles.rosinstall
+wstool update
+
+# Install required libraries.
+cd ../
+rosdep install --from-paths src --ignore-src --rosdistro kinetic -y
+# Install external libraries for flightgoggles_ros_bridge
+sudo apt install -y libzmqpp-dev libeigen3-dev
+# Install dependencies for flightgoggles renderer
+sudo apt install -y libvulkan1 vulkan-utils gdb
+
+# Build nodes and download FlightGoggles renderer binary
+# NOTE: to avoid downloading the FlightGoggles renderer binary, use the following build command:
+catkin build --cmake-args -DFLIGHTGOGGLES_DOWNLOAD_BINARY=OFF
+
+# Refresh workspace. 
+source ~/.bashrc
+```
+
+---
+<details>
+<summary>Original README</summary>
+<div markdown="1">
+
 ## Documentation, Installation, & Usage Instructions
 Please refer to the [project website](https://flightgoggles.mit.edu) for project information and our [code documentation](https://mit-aera.github.io/FlightGoggles-Documentation/index.html) for installation and usage instructions. 
 
@@ -77,3 +121,7 @@ Varun Murali
 Gilhyun Ryou
 Sertac Karaman
 ```
+
+
+</div>
+</details>
